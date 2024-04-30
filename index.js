@@ -4,6 +4,7 @@ var weight = document.getElementById("weight");
 var male = document.getElementById("m");
 var female = document.getElementById("f");
 var form = document.getElementById("form");
+var body=document.querySelector("body");
 function validateForm() {
     if (
         age.value == "" ||
@@ -31,15 +32,28 @@ function countBmi() {
     var bmi = Number(p[2]) / (((Number(p[1]) / 100) * Number(p[1])) / 100);
     var result = "";
     if (bmi < 18.5) {
+        form.style.display="none";
+document.body.style.backgroundColor="white";
         result = "Underweight";
     } else if (18.5 <= bmi && bmi <= 24.9) {
         result = "Healthy";
+        
+document.body.style.backgroundColor="blue";
+        form.style.display="none";
     } else if (25 <= bmi && bmi <= 29.9) {
         result = "Overweight";
+        
+document.body.style.backgroundColor="white";
+        form.style.display="none";
+
     } else if (30 <= bmi && bmi <= 34.9) {
         result = "Obese";
+        
+document.body.style.backgroundColor="white";
     } else if (35 <= bmi) {
         result = "Extremely obese";
+        form.style.display="none";
+
     }
     var h1 = document.createElement("h1");
     var h2 = document.createElement("h2");
@@ -51,6 +65,8 @@ function countBmi() {
     h2.appendChild(r);
     document.body.appendChild(h1);
     document.body.appendChild(h2);
+    form.innerHTML.appendChild(h1);
+    form.innerHTML.appendChild(h2);
     document.getElementById("submit").removeEventListener("click", countBmi);
     document
         .getElementById("submit")
